@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            text-align: center;
+        }
+
+        .highlight {
+            background-color: yellow;
+            font-weight: bold;
+            color: black;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>DOM Examples</h1>
+
+    <!-- Accessing Dom Elements -->
+    <section id="example-1">
+        <h2>Accessing DOM elements</h2>
+        <p id="myParagraph">
+            This is a paragraph.Click Button to change me.
+        </p>
+        <button id="changeTextButton">Change Text</button>
+    </section>
+
+    <!--Traversing Dom  -->
+    <section id="example-2">
+        <h2>Traversing Dom</h2>
+        <ul id="citiesList">
+            <li class="chai">New York</li>
+            <li>Tokyo</li>
+            <li>Paris</li>
+            <li>London</li>
+        </ul>
+        <button id="highlishFirstCity">Highlight First City</button>
+    </section>
+
+    <!--Manipulating Dom  -->
+    <section id="example-3">
+        <h2>Manipulating Dom</h2>
+        <div id="coffeOrder">
+            Order :
+            <span id="coffeType">Latte</span>
+        </div>
+        <button id="changeOrder">Change Order to Espresso</button>
+    </section>
+
+
+    <!--Create and Insert  -->
+    <section id="example-4">
+        <h2>Create and Insert Element</h2>
+        <button id="addNewItem">Add a new item to the shopping List</button>
+        <ul id="shoppingList">
+            <li>Bread</li>
+            <li>Milk</li>
+        </ul>
+    </section>
+
+    <!--Remove  -->
+    <section id="example-5">
+        <h2>Remove Element</h2>
+        <ul id="taskList">
+            <li>Task 1</li>
+            <li>Task 2</li>
+            <li>Task 3</li>
+        </ul>
+        <button id="removeLastTask">Remove Last Task</button>
+    </section>
+
+    <!--Event Handling  -->
+    <section id="example-6">
+        <h2>Event Handling</h2>
+        <button id="clickMeButton">Click Me!</button>
+    </section>
+
+    <!-- Event Delegation -->
+    <section id="example-7">
+        <h2>Event Delegation</h2>
+        <ul id="teaList">
+            <li class="teaItem">Green Tea</li>
+            <li class="teaItem">Black Tea</li>
+            <li class="teaItem">Herbal Tea</li>
+        </ul>
+        <p>Click any Tea to select it</p>
+    </section>
+
+    <!-- Form Handling -->
+    <section id="example-8">
+        <h2>Form Handling</h2>
+        <form id="feedBackForm">
+            <label for="feedbackInput">Your Feedback:</label>
+            <input type="text" id="feedbackInput" placeholder="Enter feedback" />
+            <button type="submit">Submit Feedback</button>
+        </form>
+        <p id="feedBackDisplay"></p>
+    </section>
+
+    <!-- Content Loading -->
+    <section id="example-9">
+        <h2>Conent Loading</h2>
+        <p id="domStatus">Waiting Dom to load...</p>
+    </section>
+
+    <!-- CSS Manipulation -->
+    <section id="example-10">
+        <h2>CSS Manipulation</h2>
+        <p id="descriptionText">This text will change color!</p>
+        <button id="toggleHighlight">Toggle Highlight</button>
+    </section>
+    <script src="./dom.js"></script>
+</body>
+
+</html>
