@@ -1,0 +1,136 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #0f172a;
+  color: #e2e8f0;
+  padding: 20px;
+}
+
+.container {
+  width: 100%;
+  max-width: 500px;
+  background: #111827;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #f8fafc;
+}
+
+.input-container {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+#todo-input {
+  flex: 1;
+  padding: 12px;
+  border: 1px solid #334155;
+  background: #0b1220;
+  color: #e2e8f0;
+  border-radius: 8px;
+  outline: none;
+  font-size: 15px;
+}
+
+#todo-input:focus {
+  border-color: #3b82f6;
+}
+
+#todo-input::placeholder {
+  color: #64748b;
+}
+
+#add-task-btn {
+  padding: 12px 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background: #3b82f6;
+  color: white;
+  font-weight: 600;
+  transition: background 0.2s ease;
+}
+
+#add-task-btn:hover {
+  background: #2563eb;
+}
+
+#todo-list {
+  list-style: none;
+}
+
+/* Todo Item */
+#todo-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  background: #0b1220;
+  border: 1px solid #1f2937;
+  border-radius: 8px;
+  padding: 12px 15px;
+  margin-bottom: 10px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+#todo-list li:hover {
+  border-color: #3b82f6;
+  transform: translateY(-1px);
+}
+
+/* Task Text */
+#todo-list li span {
+  flex: 1;
+  font-size: 15px;
+  word-break: break-word;
+}
+
+/* Completed Task */
+#todo-list li.completed span {
+  text-decoration: line-through;
+  color: #64748b;
+}
+
+/* Delete Button */
+#todo-list li button {
+  border: none;
+  background: #ef4444;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  transition: background 0.2s ease;
+}
+
+#todo-list li button:hover {
+  background: #dc2626;
+}
+
+#todo-list li button:active {
+  transform: scale(0.97);
+}
+
+/* Empty state (optional) */
+.empty-message {
+  text-align: center;
+  color: #64748b;
+  padding: 20px;
+}
