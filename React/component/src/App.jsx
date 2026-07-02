@@ -1,9 +1,34 @@
 import "./App.css";
 import Card from "./components/Card.jsx";
+import Hero from "./components/Hero.jsx";
+import Header from "./components/Header.jsx";
+import { Button } from "./components/ui/Button.tsx";
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from "./components/ui/navigation-menu";
 
+import CustomButton from "./components/Button.jsx";
 function App() {
   return (
     <>
+      <NavigationMenu>
+        <NavigationMenuList>
+          <NavigationMenuItem>
+            <NavigationMenuTrigger>Item One</NavigationMenuTrigger>
+            <NavigationMenuContent>
+              <NavigationMenuLink>Link</NavigationMenuLink>
+            </NavigationMenuContent>
+          </NavigationMenuItem>
+        </NavigationMenuList>
+      </NavigationMenu>
+      <Header />
+      <Button>Click Me</Button>
+      <Hero />
       <h1 className="text-blue-600 dark:text-sky-400 border-2 p-4 rounded-xl mt-4">
         Learn to Integrate Tailwind CSS
       </h1>
