@@ -1,13 +1,33 @@
 * {
-    box-sizing: border-box;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: #2563eb;
+    --primary-dark: #1d4ed8;
+
+    --success: #16a34a;
+    --warning: #d97706;
+    --info: #0891b2;
+    --danger: #dc2626;
+
+    --text: #1f2937;
+    --text-light: #6b7280;
+
+    --background: #f4f6f8;
+    --white: #ffffff;
+
+    --border: #d1d5db;
+
+    --shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
 }
 
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background: #f4f6f8;
-    color: #333;
+    background: var(--background);
+    color: var(--text);
 }
 
 .app {
@@ -15,50 +35,40 @@ body {
     padding: 40px 20px;
 }
 
-/* Header */
-
 header {
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 35px;
 }
 
 header h1 {
-    font-size: 32px;
+    font-size: 34px;
     margin-bottom: 10px;
-    color: #222;
 }
 
 header p {
-    color: #666;
+    color: var(--text-light);
     font-size: 16px;
 }
 
-
-/* Main */
-
 main {
-    max-width: 600px;
-    margin: 0 auto;
+    max-width: 700px;
+    margin: auto;
 }
 
-
-/* Queue Form */
+/* ================= FORM ================= */
 
 .queue-form {
-    background: white;
+    background: var(--white);
     padding: 25px;
     border-radius: 12px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    box-shadow: var(--shadow);
+    margin-bottom: 30px;
 }
 
 .queue-form h2 {
-    text-align: center;
     margin-bottom: 20px;
-    font-size: 22px;
+    text-align: center;
 }
-
-
-/* Form Group */
 
 .form-group {
     margin-bottom: 15px;
@@ -68,7 +78,7 @@ main {
 .form-group select {
     width: 100%;
     padding: 12px 14px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--border);
     border-radius: 8px;
     font-size: 15px;
     outline: none;
@@ -77,101 +87,158 @@ main {
 
 .form-group input:focus,
 .form-group select:focus {
-    border-color: #2563eb;
+    border-color: var(--primary);
 }
 
-
-/* Button */
+/* ================= BUTTON ================= */
 
 button {
+    border: none;
+    cursor: pointer;
+    transition: 0.2s;
+    border-radius: 8px;
+    font-size: 15px;
+}
+
+.queue-form button {
     width: 100%;
+    padding: 12px;
+    background: var(--primary);
+    color: white;
+
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 8px;
-
-    padding: 12px;
-
-    border: none;
-    border-radius: 8px;
-
-    background: #2563eb;
-    color: white;
-
-    font-size: 16px;
-    cursor: pointer;
-
-    transition: 0.2s;
 }
 
-button:hover {
-    background: #1d4ed8;
+.queue-form button:hover {
+    background: var(--primary-dark);
 }
 
-button:active {
-    transform: scale(0.98);
+/* ================= QUEUE ================= */
+
+.queue {
+    background: var(--white);
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
 }
 
-
-/* Queue Display Future */
-
-.queue-display {
-    margin-top: 30px;
+.queue h2 {
+    margin-bottom: 20px;
 }
 
-.queue-display h2 {
-    margin-bottom: 15px;
+.empty-queue {
+    text-align: center;
+    color: var(--text-light);
+    padding: 30px;
 }
 
+/* ================= QUEUE LIST ================= */
 
-.queue-card {
-    background: white;
-    padding: 15px;
-    border-radius: 10px;
-    margin-bottom: 12px;
+.queue-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
 
+.queue-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
 
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
-}
+    padding: 18px;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
 
+    background: #fafafa;
+}
 
 .customer-info h3 {
     margin-bottom: 5px;
 }
 
 .customer-info p {
-    color: #666;
-    font-size: 14px;
+    color: var(--text-light);
+    margin-bottom: 8px;
 }
 
+/* ================= STATUS ================= */
 
-/* Status */
-    
 .status {
-    padding: 5px 10px;
+    display: inline-block;
+
+    padding: 5px 12px;
+
     border-radius: 20px;
+
     font-size: 13px;
-    background: #fef3c7;
-    color: #92400e;
+    font-weight: bold;
+
+    text-transform: capitalize;
 }
 
+/* ================= ACTIONS ================= */
 
-/* Responsive */
+.actions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
 
-@media (max-width: 600px) {
+.actions button {
+    width: 110px;
+    padding: 8px 12px;
+    color: white;
+}
 
+.serve-btn {
+    background: var(--success);
+}
+
+.serve-btn:hover {
+    background: #15803d;
+}
+
+.complete-btn {
+    background: var(--info);
+}
+
+.complete-btn:hover {
+    background: #0e7490;
+}
+
+.remove-btn {
+    background: var(--danger);
+}
+
+.remove-btn:hover {
+    background: #b91c1c;
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 650px) {
     .app {
         padding: 20px 15px;
     }
 
     header h1 {
-        font-size: 26px;
+        font-size: 28px;
     }
 
-    .queue-form {
-        padding: 20px;
+    .queue-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .actions {
+        width: 100%;
+    }
+
+    .actions button {
+        width: 100%;
     }
 }
