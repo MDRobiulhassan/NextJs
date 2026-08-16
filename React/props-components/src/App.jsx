@@ -1,9 +1,14 @@
 import "./App.css";
+
 import BasicProps from "./components/BasicProps";
 import ChildrenProps from "./components/ChildrenProps";
 import ComplexProps from "./components/ComplexProps";
 import RefProps from "./components/RefProps";
-import ThemeToggler from "./components/ThemeToggler";
+
+import ThemeToggler, {
+  ThemeProvider,
+  useTheme,
+} from "./components/ThemeToggler";
 
 function Navigation() {
   const sections = [
@@ -14,13 +19,20 @@ function Navigation() {
     { id: "theme", label: "Theme Props", icon: "🎨" },
   ];
 
+  const scrollToSection = (id) => {
+    document.getElementById(id)?.scrollIntoView({
+      behavior: "smooth",
+    });
+  };
+
   return (
-    <nav className="sticky top-0 bg-gray-900 shadow-md p-4">
-      <div className="flex flex-wrap gap-3 justify-center">
+    <nav className="sticky top-0 z-50 bg-gray-900 p-4 shadow-md">
+      <div className="flex flex-wrap justify-center gap-3">
         {sections.map((section) => (
           <button
             key={section.id}
-            className="px-4 py-2 rounded-lg bg-blue-600 text-white font-medium hover:bg-blue-800 transition"
+            onClick={() => scrollToSection(section.id)}
+            className="rounded-lg bg-blue-600 px-4 py-2 font-medium text-white transition hover:bg-blue-800"
           >
             <span className="mr-2">{section.icon}</span>
             {section.label}
@@ -32,14 +44,25 @@ function Navigation() {
 }
 
 function AppContent() {
+  const { isDark } = useTheme();
+
   return (
-    <div className="min-h-screen bg-gray-900 text-white">
+    <div
+      className={`min-h-screen transition-colors ${
+        isDark ? "bg-gray-900 text-white" : "bg-gray-100 text-gray-900"
+      }`}
+    >
       <Navigation />
 
       <div className="container mx-auto max-w-6xl px-6 py-10">
         <header className="mb-12 text-center">
           <h1 className="text-5xl font-bold tracking-tight">React Props</h1>
-          <p className="mt-3 text-lg text-gray-300">
+
+          <p
+            className={`mt-3 text-lg ${
+              isDark ? "text-gray-300" : "text-gray-600"
+            }`}
+          >
             A comprehensive guide to learning React Props
           </p>
         </header>
@@ -66,7 +89,13 @@ function AppContent() {
           </section>
         </main>
 
-        <footer className="mt-16 border-t border-gray-700 pt-6 text-center text-sm text-gray-400">
+        <footer
+          className={`mt-16 border-t pt-6 text-center text-sm ${
+            isDark
+              ? "border-gray-700 text-gray-400"
+              : "border-gray-300 text-gray-500"
+          }`}
+        >
           Made with ❤️ using Bun, Vite, React & Tailwind CSS
         </footer>
       </div>
@@ -75,5 +104,9 @@ function AppContent() {
 }
 
 export default function App() {
-  return <AppContent />;
+  return (
+    <ThemeProvider>
+      <AppContent />
+    </ThemeProvider>
+  );
 }
