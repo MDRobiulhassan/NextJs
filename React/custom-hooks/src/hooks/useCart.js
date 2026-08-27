@@ -1,10 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 
 export function useCart() {
   const [cart, setCart] = useState(() => {
+    if (typeof window === "undefined") return [];
     try {
-      const savedCart = localStorage.getItem("cart");
-      return savedCart ? JSON.parse(savedCart) : [];
+      const savedCart = window.localStorage.getItem("cart");
+      const parsedCart = savedCart ? JSON.parse(savedCart) : [];
+      return Array.isArray(parsedCart) ? parsedCart : [];
     } catch (error) {
       console.error("Failed to load cart from localstorage", error);
       return [];
@@ -24,7 +26,7 @@ export function useCart() {
       if (e.key === "cart") {
         try {
           const newCart = JSON.parse(e.newValue || "[]");
-          setCart(newCart);
+          setCart(Array.isArray(newCart) ? newCart : []);
         } catch (error) {
           console.error("Failed to Parse cart from localstorage", error);
         }
@@ -33,4 +35,53 @@ export function useCart() {
     window.addEventListener("storage", handleStorage);
     return () => window.removeEventListener("storage", handleStorage);
   }, []);
+
+  const addToCart = (product) => {
+    if (!product || product.id == null) return;
+    setCart((currentCart) => {
+      const existingItem = currentCart.find((item) => item.id === product.id);
+      if (existingItem) {
+        return currentCart.map((item) =>
+          item.id === product.id
+            ? { ...item, quantity: item.quantity + 1 }
+            : item,
+        );
+      }
+      return [...currentCart, { ...product, quantity: 1 }];
+    });
+  };
+
+  const removeFromCart = (productId) => {
+    setCart((currentCart) =>
+      currentCart.filter((item) => item.id !== productId),
+    );
+  };
+
+  const updateQuantity = (productId, quantity) => {
+    if (quantity < 1) return;
+    setCart((currentCart) =>
+      currentCart.map((item) =>
+        item.id === productId ? { ...item, quantity } : item,
+      ),
+    );
+  };
+
+  const total = useMemo(() => {
+    return Number(
+      cart
+        .reduce((sum, item) => {
+          const itemTotal = item.price * (item.quantity || 0);
+          return sum + itemTotal;
+        }, 0)
+        .toFixed(2),
+    );
+  }, [cart]);
+
+  return {
+    cart,
+    addToCart,
+    removeFromCart,
+    updateQuantity,
+    total,
+  };
 }
